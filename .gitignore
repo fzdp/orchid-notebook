@@ -1,0 +1,9 @@
+/.venv
+__pycache__
+images.py
+/build
+/dist
+*.log
+/archives
+.python-version
+.tool-versions
