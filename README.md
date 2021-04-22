@@ -1,10 +1,17 @@
 Simple note-taking app with task/todo management.
 
-![main window](https://github.com/fzdp/orchid-notebook/blob/master/assets/demo/main_window.png?raw=true)
-![new_notebook](https://github.com/fzdp/orchid-notebook/blob/master/assets/demo/new_notebook.png?raw=true)
-![new_task](https://github.com/fzdp/orchid-notebook/blob/master/assets/demo/new_task.png?raw=true)
-![text_editor](https://github.com/fzdp/orchid-notebook/blob/master/assets/demo/text_editor.png?raw=true)
-![text_search](https://github.com/fzdp/orchid-notebook/blob/master/assets/demo/text_search.png?raw=true)
+### Main window
+![main window](https://raw.githubusercontent.com/fzdp/orchid-notebook/main/assets/demo/main_window.png)
+### New notebook
+![new_notebook](https://raw.githubusercontent.com/fzdp/orchid-notebook/main/assets/demo/new_notebook.png)
+### New Task
+![new_task](https://raw.githubusercontent.com/fzdp/orchid-notebook/main/assets/demo/new_task.png)
+### Task Panel
+![task_panel](https://raw.githubusercontent.com/fzdp/orchid-notebook/main/assets/demo/task_list.png)
+### Text editor
+![text_editor](https://raw.githubusercontent.com/fzdp/orchid-notebook/main/assets/demo/text_editor.png)
+### Text search
+![text_search](https://raw.githubusercontent.com/fzdp/orchid-notebook/main/assets/demo/text_search.png)
 
 # Features
 * Basic note management
