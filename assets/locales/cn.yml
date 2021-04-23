@@ -22,7 +22,7 @@ cn:
     copy: "复制"
     paste: "粘贴"
     select_all: "全选"
-    view: "全选"
+    view: "视图"
     toggle_task_panel: "切换任务面板"
     change_lang: "语言"
     english: "英文"
