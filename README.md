@@ -17,7 +17,7 @@ Simple note-taking app with task/todo management.
 * Basic note management
 * Easy task management
 * Multi-language support
-* Fully configurable
+* Fully configurable(currently via config.ini file)
 * Note content is portable
 * Cross platform
 * And more...
@@ -29,12 +29,18 @@ Simple note-taking app with task/todo management.
 * Text editor: [quill](https://github.com/quilljs/quill)
 * Webview: [cefpython](https://github.com/cztomczak/cefpython)
 * Messaging: [PyPubSub](https://github.com/schollii/pypubsub)
+* i18n: [python-i18n](https://github.com/danhper/python-i18n)
+* Chinese text segmentation: [jieba](https://github.com/fxsjy/jieba)
+* ListView component: [ObjectListView](https://objectlistview-python-edition.readthedocs.io/en/latest/)
 
 # Usage
-make sure python version 3.x, then install required packages
+make sure python version is 3.x, then setup virtual env, run following commands:
 ```
+pip install -r requirements.txt
 python main.py
 ```
+
+config.ini file is in the app data folder
 
 # Todo List
 - [ ] Distribute as single App
