@@ -161,8 +161,8 @@ class NoteTree(customtreectrl.CustomTreeCtrl, PopupMenuMixin):
 
     def delete_selected_notebook(self):
         if self.selected_notebook_id:
-            self.Delete(self.GetSelection())
             self.tree_node_dict.pop(self.selected_notebook_id, None)
+            self.Delete(self.GetSelection())
 
     def on_item_selected(self, evt):
         if self.selected_notebook_id:
