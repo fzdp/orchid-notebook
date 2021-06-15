@@ -1,6 +1,6 @@
 from wx.tools import img2py
 import os
-from utils.application_util import ApplicationUtil
+from application_util import ApplicationUtil
 
 
 class EncodeBitmapsUtil:
