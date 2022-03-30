@@ -37,6 +37,7 @@ class TextEditorToolbar(wx.Panel):
         self.tool_bold = GenericBitmapButton(self, 'tool_bold')
         self.tool_italic = GenericBitmapButton(self, 'tool_italic')
         self.tool_underline = GenericBitmapButton(self, 'tool_underline')
+        self.tool_strike = GenericBitmapButton(self, 'tool_strike')
         self.tool_color = _ToolColor(self)
         self.tool_background = GenericBitmapButton(self, 'tool_background')
         self.tool_quote = GenericBitmapButton(self, 'tool_quote')
@@ -60,6 +61,7 @@ class TextEditorToolbar(wx.Panel):
         self.main_sizer.Add(self.tool_bold, flag=wx.RIGHT, border=3)
         self.main_sizer.Add(self.tool_italic, flag=wx.RIGHT, border=4)
         self.main_sizer.Add(self.tool_underline, flag=wx.RIGHT, border=8)
+        self.main_sizer.Add(self.tool_strike, flag=wx.RIGHT, border=8)
         self.main_sizer.Add(self.tool_color, flag=wx.RIGHT, border=8)
         self.main_sizer.Add(self.tool_background, flag=wx.RIGHT, border=8)
         self.main_sizer.Add(self.tool_quote, flag=wx.RIGHT, border=8)
@@ -79,6 +81,7 @@ class TextEditorToolbar(wx.Panel):
         self.tool_bold.Bind(wx.EVT_BUTTON, self._on_bold_clicked)
         self.tool_italic.Bind(wx.EVT_BUTTON, self._on_italic_clicked)
         self.tool_underline.Bind(wx.EVT_BUTTON, self._on_underline_clicked)
+        self.tool_strike.Bind(wx.EVT_BUTTON, self._on_strike_clicked)
         self.tool_color.Bind(wx.EVT_BUTTON, self._on_fg_color_clicked)
         self.tool_background.Bind(wx.EVT_BUTTON, self._on_bg_color_clicked)
         self.tool_quote.Bind(wx.EVT_BUTTON, self._on_quote_clicked)
@@ -112,9 +115,19 @@ class TextEditorToolbar(wx.Panel):
         self.editor.format_content('underline', format_val)
         self._display_underline_format()
 
+    def _on_strike_clicked(self, e):
+        format_val = not self.editor.content_format['strike']
+        self.editor.format_content('strike', format_val)
+        self._display_strike_format()
+
     def _display_underline_format(self):
         bitmap = images.tool_underline_active.Bitmap if self.editor.content_format['underline'] else images.tool_underline.Bitmap
         self.tool_underline.SetBitmap(bitmap)
+
+    def _display_strike_format(self):
+        bitmap = images.tool_strike_active.Bitmap if self.editor.content_format[
+            'strike'] else images.tool_strike.Bitmap
+        self.tool_strike.SetBitmap(bitmap)
 
     def _on_quote_clicked(self, e):
         format_val = not self.editor.content_format['blockquote']
@@ -247,6 +260,8 @@ class TextEditorToolbar(wx.Panel):
             self._display_italic_format()
         if 'underline' in changed_format:
             self._display_underline_format()
+        if 'strike' in changed_format:
+            self._display_strike_format()
         if 'blockquote' in changed_format:
             self._display_quote_format()
         if 'list' in changed_format:

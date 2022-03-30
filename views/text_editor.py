@@ -56,6 +56,7 @@ class TextEditor(wx.Panel, PopupMenuMixin):
             'size': False,
             'color': False,
             'underline': False,
+            'strike': False,
             'background': False,
             'code-block': False,
             'blockquote': False,
