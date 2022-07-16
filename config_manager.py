@@ -14,6 +14,11 @@ class ConfigManager:
             keys = keys[0].split(".")
         return self.config_dict.get(*keys)
 
+    def getboolean(self, *keys):
+        if len(keys) == 1:
+            keys = keys[0].split(".")
+        return self.config_dict.getboolean(*keys)
+
     # set("UI.language", "en") or set("UI", "language", "en")
     def set(self, *keys_and_value):
         if len(keys_and_value) == 2:

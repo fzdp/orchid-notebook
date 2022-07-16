@@ -53,11 +53,21 @@ def setup_db():
     conn.close()
 
 
+def sync_notes():
+    print("sync notes...")
+    if config.getboolean("APP", "git_sync"):
+        data_dir = config.get("PATH", "data_dir")
+        git_clone = f"cd \"{data_dir}\" && git pull"
+        print(git_clone)
+        os.system(git_clone)
+
+
 class App(wx.App):
     def OnInit(self):
         setup_locale()
         setup_translation()
         setup_db()
+        sync_notes()
         return True
 
 
