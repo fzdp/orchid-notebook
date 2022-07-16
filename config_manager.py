@@ -43,7 +43,7 @@ class ConfigManager:
             self.config_dict.write(configfile)
 
     def _ensure_dir_exists(self):
-        dir_list = [self.get("PATH", "notes_dir"), self.get("PATH", "notes_index_dir")]
+        dir_list = [self.get("PATH", "data_dir"), self.get("PATH", "notes_dir"), self.get("PATH", "notes_index_dir")]
         for dir_item in dir_list:
             if not os.path.exists(dir_item):
                 os.mkdir(dir_item)
@@ -54,18 +54,20 @@ class ConfigManager:
 
     @classmethod
     def _get_default_config(cls):
-        data_dir = cls._get_app_data_dir()
+        app_data_dir = cls._get_app_data_dir()
+        note_data_dir = os.path.join(app_data_dir, "default_notes")
         config_parser = ConfigParser()
         config_parser["DEFAULT"] = {
-            "db_file": os.path.join(data_dir, "note.sqlite"),
-            "notes_dir": os.path.join(data_dir, "notes"),
-            "notes_index_dir": os.path.join(data_dir, "notes_index"),
+            "data_dir": note_data_dir,
+            "db_file": os.path.join(note_data_dir, "note.sqlite"),
+            "notes_dir": os.path.join(note_data_dir, "notes"),
+            "notes_index_dir": os.path.join(note_data_dir, "notes_index"),
             "language": "en"
         }
         config_parser["PATH"] = {
-            "db_file": os.path.join(data_dir, "note.sqlite"),
-            "notes_dir": os.path.join(data_dir, "notes"),
-            "notes_index_dir": os.path.join(data_dir, "notes_index")
+            "db_file": os.path.join(app_data_dir, "note.sqlite"),
+            "notes_dir": os.path.join(app_data_dir, "notes"),
+            "notes_index_dir": os.path.join(app_data_dir, "notes_index")
         }
         config_parser["APP"] = {
             "language": "en",
