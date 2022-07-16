@@ -49,7 +49,7 @@ class NotePreviewPanel(wx.Panel, PopupMenuMixin):
         self.st_note_title.SetFont(wx.Font(wx.FontInfo(14).Bold()))
         self.st_note_preview.SetFont(wx.Font(wx.FontInfo(14).Light()))
         self.st_note_preview.SetOwnForegroundColour(wx.Colour(78,78,78))
-        self.st_note_date.SetOwnForegroundColour(wx.Colour(78,78,78))
+        self.st_note_date.SetOwnForegroundColour("#D61C4E")
 
         self.refresh(note)
 
@@ -81,7 +81,7 @@ class NotePreviewPanel(wx.Panel, PopupMenuMixin):
         self.st_note_title.SetLabel(title)
 
     def update_time(self, updated_at):
-        self.st_note_date.SetLabel(updated_at.strftime('%Y-%m-%d'))
+        self.st_note_date.SetLabel(updated_at.strftime('%Y-%m-%d %H:%M'))
 
     def undo_highlight(self):
         self.SetBackgroundColour(self.DEFAULT_BACKGROUND_COLOR)
