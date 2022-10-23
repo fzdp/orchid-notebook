@@ -89,3 +89,26 @@ quill.loadContent = function(value){
 quill.insertTime = function(strTime) {
     quill.insertText(quill.getSelection(true), strTime, {'TimeBlot': true}, 'user');
 };
+
+quill.insertImage = function (imagePath) {
+    var img = document.createElement('img');
+    img.src = imagePath;
+    var range = window.getSelection().getRangeAt(0);
+    range.deleteContents();
+    range.insertNode(img);
+};
+
+function loadImage(file) {
+    var reader = new FileReader();
+    reader.onload = function(e){
+        pyNotifyPasted('image', e.target.result.split(',')[1]);
+    };
+    reader.readAsDataURL(file);
+}
+
+document.onpaste = function (e) {
+  var item = e.clipboardData.items[0];
+  if (/^image\/(p?jpeg|gif|png)$/i.test(item.type)) {
+      loadImage(item.getAsFile());
+  }
+};

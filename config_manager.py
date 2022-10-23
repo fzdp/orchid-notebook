@@ -48,7 +48,7 @@ class ConfigManager:
             self.config_dict.write(configfile)
 
     def _ensure_dir_exists(self):
-        dir_list = [self.get("PATH", "data_dir"), self.get("PATH", "notes_dir"), self.get("PATH", "notes_index_dir")]
+        dir_list = [self.get("PATH", "data_dir"), self.get("PATH", "notes_dir"), self.get("PATH", "notes_index_dir"), self.get("PATH", "images_dir")]
         for dir_item in dir_list:
             if not os.path.exists(dir_item):
                 os.mkdir(dir_item)
@@ -66,12 +66,14 @@ class ConfigManager:
             "data_dir": note_data_dir,
             "db_file": os.path.join(note_data_dir, "note.sqlite"),
             "notes_dir": os.path.join(note_data_dir, "notes"),
+            "images_dir": os.path.join(note_data_dir, "images"),
             "notes_index_dir": os.path.join(note_data_dir, "notes_index"),
             "language": "en"
         }
         config_parser["PATH"] = {
             "db_file": os.path.join(app_data_dir, "note.sqlite"),
             "notes_dir": os.path.join(app_data_dir, "notes"),
+            "images_dir": os.path.join(note_data_dir, "images"),
             "notes_index_dir": os.path.join(app_data_dir, "notes_index")
         }
         config_parser["APP"] = {

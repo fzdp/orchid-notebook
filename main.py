@@ -53,6 +53,14 @@ def setup_db():
     conn.close()
 
 
+def link_images_dir():
+    note_images_link = os.path.join("assets", "text_editor", "note_images")
+    if not os.path.exists(note_images_link):
+        real_note_images_path = config.get("PATH", "images_dir")
+        os.system(f"ln -s '{real_note_images_path}' '{note_images_link}'")
+        os.system(f"echo {note_images_link} >> .gitignore")
+
+
 def sync_notes():
     print("sync notes...")
     if config.getboolean("APP", "git_sync"):
@@ -67,6 +75,7 @@ class App(wx.App):
         setup_locale()
         setup_translation()
         setup_db()
+        link_images_dir()
         sync_notes()
         return True
 

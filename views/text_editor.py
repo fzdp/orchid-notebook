@@ -8,6 +8,9 @@ from .popup_menu_mixin import PopupMenuMixin
 from pubsub import pub
 from .text_editor_toolbar import TextEditorToolbar
 from urllib.parse import quote
+import base64
+import uuid
+from config_manager import config
 
 
 class TextEditor(wx.Panel, PopupMenuMixin):
@@ -35,7 +38,8 @@ class TextEditor(wx.Panel, PopupMenuMixin):
 
         self.webview.set_js_bindings([('pyNotifyContentChanged', self._on_content_changed),
                                       ('pyNotifyFormatChanged', self._on_format_changed),
-                                      ('pyOnLinkClicked', self.on_link_clicked)])
+                                      ('pyNotifyPasted', self._on_pasted),
+                                      ('pyOnLinkClicked', self._on_link_clicked)])
         self.note = None
         self.SetBackgroundColour(wx.WHITE)
 
@@ -109,7 +113,7 @@ class TextEditor(wx.Panel, PopupMenuMixin):
     def update_timestamps(self):
         self.toolbar.tool_info.SetToolTip(f'{_("text_editor.tooltip_created", v1=str(self.note.created_at))}\n{_("text_editor.tooltip_updated", v1=str(self.note.updated_at))}')
 
-    def on_link_clicked(self, link):
+    def _on_link_clicked(self, link):
         wx.LaunchDefaultBrowser(link)
 
     def _on_format_changed(self, content_format):
@@ -121,6 +125,17 @@ class TextEditor(wx.Panel, PopupMenuMixin):
                 changed_format[key] = format_val
         if changed_format:
             self.toolbar.display_format(changed_format)
+
+    def _on_image_pasted(self, image_content):
+        file_name = str(self.note.id) + "_" + str(uuid.uuid4())
+        image_file = os.path.join(config.get("PATH.images_dir"), file_name)
+        with open(image_file, 'wb') as f:
+            f.write(base64.b64decode(image_content))
+        self.webview.run_js("quill.insertImage", "note_images/" + file_name)
+
+    def _on_pasted(self, data_type, data):
+        if data_type == "image":
+            self._on_image_pasted(data)
 
     def _on_content_changed(self, content):
         if not self.note:
