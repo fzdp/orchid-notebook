@@ -58,7 +58,8 @@ def link_images_dir():
     if not os.path.exists(note_images_link):
         real_note_images_path = config.get("PATH", "images_dir")
         os.system(f"ln -s '{real_note_images_path}' '{note_images_link}'")
-        os.system(f"echo {note_images_link} >> .gitignore")
+        gitignore_file = os.path.join(ApplicationUtil.bundle_dir(), ".gitignore")
+        os.system(f"echo {note_images_link} >> '{gitignore_file}'")
 
 
 def sync_notes():
