@@ -45,7 +45,6 @@ class ListPanel(wx.Panel):
 
     def _update_selected_note_content(self, content, updated_at):
         panel = self.note_list_panel.find(self.selected_note_id)
-        panel.update_content(re.sub(r'<.*?>','', content))
         panel.update_time(updated_at)
 
         if self.note_ids[0] != self.selected_note_id:
