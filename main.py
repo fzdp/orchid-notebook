@@ -55,11 +55,11 @@ def setup_db():
 
 def link_images_dir():
     note_images_link = os.path.join("assets", "text_editor", "note_images")
-    if not os.path.exists(note_images_link):
-        real_note_images_path = config.get("PATH", "images_dir")
-        os.system(f"ln -s '{real_note_images_path}' '{note_images_link}'")
-        gitignore_file = os.path.join(ApplicationUtil.bundle_dir(), ".gitignore")
-        os.system(f"echo {note_images_link} >> '{gitignore_file}'")
+    current_note_images_path = str(os.path.realpath(note_images_link))
+    real_note_images_path = config.get("PATH", "images_dir")
+
+    if not os.path.exists(note_images_link) or current_note_images_path != real_note_images_path:
+        os.system(f"ln -sfn '{real_note_images_path}' '{note_images_link}'")
 
 
 def sync_notes():
