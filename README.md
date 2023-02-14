@@ -20,6 +20,8 @@ Simple note-taking app with task/todo management.
 * Fully configurable(currently via config.ini file)
 * Note content is portable
 * Cross platform
+* Image copy paste
+* Sync notebooks via git
 * And more...
 
 # Main packages
